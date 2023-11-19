@@ -1,9 +1,9 @@
 import axios from "axios";
 
 
-const API = axios.create({baseURL:'http://localhost:5000'})
+// const API = axios.create({baseURL:'http://localhost:5000'})
 
-// const API = axios.create({baseURL:'https://hey-chat-application-backend.onrender.com'})
+const API = axios.create({baseURL:'https://recipe-application-backend.onrender.com/'})
 
 //Athentication-folder
 export const login=(values)=>API.post(`/auth/login`,values)
