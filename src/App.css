@@ -1,0 +1,141 @@
+:root {
+  --yellow: #f5c32c;
+  --orange: #fca61f;
+  --black: #355a62;
+
+  --gray: rgba(36, 45, 73, 0.65);
+  --profileShadow: 0px 4px 17px 2px rgba(0, 0, 0, 0.25);
+  --hrColor: #cfcdcd;
+  --cardColor: rgba(255, 255, 255, 0.64);
+
+  /* --buttonBg: #fd507e; */
+  --buttonBg: #c70035;
+  --inputColor: rgba(40, 52, 62, 0.07);
+  --photo: #4cb256;
+  --video: #4a4eb7;
+  --location: #ef5757;
+  --shedule: #e1ae4a;
+}
+
+.App {
+  overflow: hidden;
+  color: var(--black);
+
+  background-color: #f3f3f3;
+}
+.blur {
+  position: absolute;
+
+  width: 32vw;
+  height: 20vw;
+  border-radius: 50%;
+
+  background-color: rgb(255, 177, 194, 0.7);
+
+  filter: blur(72px);
+}
+.blurone {
+  top: -22%;
+  right: 0;
+}
+.blurtwo {
+  top: 30%;
+  left: -12%;
+}
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  font-size: 1.2vw;
+  color: white;
+  border-radius: 0.5vw;
+  background: var(--buttonBg);
+  transition: all 100ms ease-out;
+}
+.button:hover {
+  cursor: pointer;
+  color: var(--buttonBg);
+  background: transparent;
+  border: 2px solid var(--buttonBg);
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+#error-box {
+  border: 1px solid red !important;
+}
+#success-box {
+  border: 2px solid greenyellow !important;
+}
+.err {
+  font-size: small;
+  color: red;
+}
+
+.forlinks {
+  text-decoration: none;
+  color: var(--gray);
+}
+
+.Toastify__toast--success {
+  background-color: black;
+}
+
+.Toastify__toast--error {
+  font-size: 1vw !important;
+
+  background-color: black;
+}
+
+.react-input-emoji--input {
+  min-height: 70%;
+}
+
+@media only screen and (max-width: 600px) {
+  .Toastify__toast--success {
+    display: flex !important;
+    align-items: center !important;
+    height: 5vw !important;
+    font-size: 2.5vw !important;
+    left: 15% !important;
+    top: 3vw !important;
+  }
+  .Toastify__toast--error {
+    display: flex !important;
+    align-items: center !important;
+    height: 5vw !important;
+    font-size: 2.5vw !important;
+    left: 15% !important;
+    top: 3vw !important;
+  }
+  .Toastify__toast {
+    --toastify-toast-min-height: 10vh;
+    width: 70% !important;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .blur {
+    position: fixed;
+    width: 52vw;
+    height: 40vw;
+    filter: blur(36px);
+  }
+  .blurone {
+    top: -10%;
+    right: 0;
+  }
+  .blurtwo {
+    top: 60%;
+    left: -18%;
+  }
+  .err {
+    font-size: 2vw;
+  }
+  .button {
+    font-size: 2.5vw;
+    border-radius: 0.2rem;
+  }
+}
