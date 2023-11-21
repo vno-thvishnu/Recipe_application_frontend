@@ -3,30 +3,45 @@ import axios from "axios";
 import { useContext, useEffect, useRef, useState } from "react";
 import { removeImage, UpdateUser } from "../../ApiRequest/ApiRequest";
 import { UserContext } from "../../UseContext";
+import { ToastContainer, toast } from "react-toastify";
+import { Slide, Zoom, Flip, Bounce } from "react-toastify";
+import "../../Loading.css"
 
-function ProfileModal({ modalOpen, setModalOpen, loginUser }) {
+
+function ProfileModal({ modalOpen, setModalOpen }) {
   const aRefone = useRef(null);
   const aReftwo = useRef(null);
+  // const aRefthree = useRef(null);
 
-  const { setLoginUser } = useContext(UserContext);
 
-  useEffect(() => {
-    setProfileImage(null);
-    setCoverImage(null);
-    console.log("dd")
-  }, [modalOpen]);
-  useEffect(() => {
-    setFormData(loginUser);
-  }, [loginUser]);
-
+  const { setLoginUser, loginUser } = useContext(UserContext);
   const theme = useMantineTheme();
   const [buttonLoading, setButtonLoading] = useState(false);
-  const [formData, setFormData] = useState(loginUser);
+  const [formData, setFormData] = useState([]);
   const [profileImage, setProfileImage] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
 
   const [profileImagePreview, setProfileImagePreview] = useState(null);
   const [coverImagePreview, setCoverImagePreview] = useState(null);
+
+  useEffect(() => {
+    setProfileImage(null);
+    setCoverImage(null);
+  }, [modalOpen]);
+  useEffect(() => {
+    setFormData(loginUser);
+    setProfileImagePreview(loginUser.profileImage)
+    setCoverImagePreview(loginUser.coverImage)
+    // if(loginUser.profileImage!==""){
+    //   setProfileImage(true)
+    // }
+
+  }, [loginUser]);
+  // console.log(loginUser)
+  // console.log(loginUser.workingAs)
+  // console.log(loginUser.bio)
+
+
 
   const onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
@@ -41,6 +56,19 @@ function ProfileModal({ modalOpen, setModalOpen, loginUser }) {
     }
   };
 
+  const userNameHandleChange=(e)=>{
+    // let data=e.target.value
+    setFormData({...formData,userName:e.target.value});
+  
+  }
+  const bioHandleChange=(e)=>{
+    setFormData({...formData,bio:e.target.value});
+    
+  }
+  const workingAsHandleChange=(e)=>{
+    setFormData({...formData,workingAs:e.target.value});
+    
+  }
   // const preset_key = "hswixg5v";
   const preset_key = "pwfoxhd9";
 
@@ -49,12 +77,13 @@ function ProfileModal({ modalOpen, setModalOpen, loginUser }) {
   const handleSubmit = async (event) => {
     setButtonLoading(true);
     event.preventDefault();
+
     let UserData = formData;
 
     if (profileImage) {
-      const formData = new FormData();
-      formData.append("file", profileImage);
-      formData.append("upload_preset", preset_key);
+      const convertPic = new FormData();
+      convertPic.append("file", profileImage);
+      convertPic.append("upload_preset", preset_key);
 
       try {
         if (UserData.profileImage !== "") {
@@ -63,59 +92,173 @@ function ProfileModal({ modalOpen, setModalOpen, loginUser }) {
             profileImage_publicId: UserData.profileImage_publicId,
           };
 
-          const remove = await removeImage(userId, sendData);
+         await removeImage(userId, sendData);
         }
 
         const server = await axios.post(
           `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
-          formData
+          convertPic
         );
 
-        const updatedata = {
-          currentUserId: UserData._id,
-          profileImage: server.data.secure_url,
-          profileImage_publicId: server.data.public_id,
-        };
-        const update = await UpdateUser(UserData._id, updatedata);
-        aRefone.current.value = null;
-        setProfileImage(null);
-
+        // const updatedata = {
+        //   currentUserId: UserData._id,
+        //   profileImage: server.data.secure_url,
+        //   profileImage_publicId: server.data.public_id,
+        // };
+      
+            UserData=({...UserData, 
+              profileImage: server.data.secure_url,
+              profileImage_publicId: server.data.public_id});
+        const update = await UpdateUser(UserData._id, UserData);
+        // aRefone.current.value = null;
+        // setProfileImage(null);
         setLoginUser(update.data.otherDetails);
+
+        if(!coverImage){
+
+          if (update.data.message === "Updated successfully") {
+              toast.success(update.data.message, {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+            
+              setButtonLoading(false);
+              setTimeout(() =>setModalOpen(false), 5500);
+             
+            }  else if (
+              update.data.message === "Try another username" 
+            ) {
+              toast.error(update.data.message, {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+              setButtonLoading(false);
+            }
+        }
+      
       } catch (error) {
         console.log(error);
       }
     }
     if (coverImage) {
-      const formData = new FormData();
-      formData.append("file", coverImage);
-      formData.append("upload_preset", preset_key);
+      const convertPic = new FormData();
+      convertPic.append("file", coverImage);
+      convertPic.append("upload_preset", preset_key);
       try {
         if (UserData.coverImage !== "") {
           const sendData = {
             coverImage_publicId: UserData.coverImage_publicId,
           };
-          const remove = await removeImage(UserData._id, sendData);
+         await removeImage(UserData._id, sendData);
         }
 
         const server = await axios.post(
           `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
-          formData
+          convertPic
         );
-        const updatedata = {
-          currentUserId: UserData._id,
+        // const updatedata = {
+        //   currentUserId: UserData._id,
+        //   coverImage: server.data.secure_url,
+        //   coverImage_publicId: server.data.public_id,
+        // };
+        UserData=({...UserData, 
           coverImage: server.data.secure_url,
-          coverImage_publicId: server.data.public_id,
-        };
-        const update = await UpdateUser(UserData._id, updatedata);
-        aReftwo.current.value = null;
-        setCoverImage(null);
-
+          coverImage_publicId: server.data.public_id});
+    
+        const update = await UpdateUser(UserData._id, UserData);
+        // aReftwo.current.value = null;
+        // setCoverImage(null);
         setLoginUser(update.data.otherDetails);
+
+        if (update.data.message === "Updated successfully") {
+            toast.success(update.data.message, {
+              position: "top-center",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          
+            setButtonLoading(false);
+            setTimeout(() =>setModalOpen(false), 5500);
+           
+          }else if (
+            update.data.message === "Try another username" 
+          ) {
+            toast.error(update.data.message, {
+              position: "top-center",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            setButtonLoading(false);
+          }
       } catch (error) {
         console.log(error);
       }
     }
+if(profileImage===null && coverImage==null){
+  try {
+    const update = await UpdateUser(UserData._id, UserData);
+   
+    // console.log(update.data.message)
+    setLoginUser(update.data.otherDetails);
 
+    if (update.data.message === "Updated successfully") {
+      toast.success(update.data.message, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    
+      setButtonLoading(false);
+      setTimeout(() =>setModalOpen(false), 5500);
+     
+    } else if (
+      update.data.message === "Try another username" 
+    ) {
+      toast.error(update.data.message, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      setButtonLoading(false);
+    }
+
+  } catch (error) {
+    console.log(error);
+    
+  }
+}
     setButtonLoading(false);
   };
 
@@ -133,9 +276,19 @@ function ProfileModal({ modalOpen, setModalOpen, loginUser }) {
     >
       <form className="inputform bpad">
         <h3>Your Info</h3>
-
-        <h6>Profile Image</h6>
-        {profileImage && <img className="pimg" src={profileImagePreview} />}
+        <h6>User Name</h6>
+        <div className="Inputpair">
+            <input
+              className="Input"
+              type="text"
+              placeholder={loginUser.userName}
+              name="userName"
+              // value={setFormData.userName}
+              onChange={userNameHandleChange}
+           />
+          </div>
+          <h6>Profile Image</h6>
+        {profileImagePreview!=="" && <img className="pimg" src={profileImagePreview} />}
         <div className="Input nopad">
           <input
             type="file"
@@ -146,7 +299,7 @@ function ProfileModal({ modalOpen, setModalOpen, loginUser }) {
           />
         </div>
         <h6>Cover Image</h6>
-        {coverImage && <img className="cimg" src={coverImagePreview} />}
+        {coverImagePreview!=="" && <img className="cimg" src={coverImagePreview} />}
         <div className="Input nopad">
           <input
             type="file"
@@ -156,7 +309,32 @@ function ProfileModal({ modalOpen, setModalOpen, loginUser }) {
             onChange={onImageChange}
           />
         </div>
+        <h6>Bio</h6>
+          <div className="Inputpair">
+            <input
+              className="Input"
+              type="text"
+              placeholder={loginUser.bio===""?"type about self":formData.bio}
+              name="bio"
+              onChange={bioHandleChange}
+          
+            />
+          
+          </div>
+        <h6>Working As</h6>
 
+          <div className="Inputpair">
+            <input
+              className="Input"
+              type="text"
+              placeholder={loginUser.workingAs===""?"chef, cook, & housewife etc.. ":formData.workingAs}
+              name="workingAs"
+              onChange={workingAsHandleChange}
+          
+            />
+          
+          </div>
+    
         {buttonLoading ? (
           <div class="loader">
             <i class="loader-el"></i>
@@ -172,6 +350,19 @@ function ProfileModal({ modalOpen, setModalOpen, loginUser }) {
           </button>
         )}
       </form>
+      {/* <ToastContainer
+        transition={Bounce}
+        position="bottom-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      /> */}
     </Modal>
    
   );

@@ -6,6 +6,9 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [loginUser, setLoginUser] = useState([]);
   const [searchUser, setSearchUser] = useState("");
+  const [forLoad, setForLoad] = useState("");
+  const [data,setData]=useState([])
+
 
   // const[overAllCondition,setOverAllCondition]=useState([])
 
@@ -18,7 +21,11 @@ export const UserProvider = ({ children }) => {
         loginUser,
         setLoginUser,
         searchUser,
-        setSearchUser
+        setSearchUser,
+        setForLoad,
+        forLoad,
+        data,
+        setData
         // overAllCondition,
         // setOverAllCondition
       }}

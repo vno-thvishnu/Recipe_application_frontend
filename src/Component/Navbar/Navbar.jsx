@@ -25,20 +25,19 @@ function Navbar() {
                   <h6>You will become a Chef</h6>
                 </div>
               </div>
-              <div className=' flex justify-center items-center  bg-[#1b1c1e] '>
+              <div >
+  <Link to='/home'
+ style={{transition:"width 1s"}} 
+ className='buttonfontsize link_tag'>Community</Link></div>
+              <div>
   <Link to='/home/profile'
  style={{transition:"width 1s"}} 
  className='buttonfontsize  link_tag
- font-inter font-medium bg-[#6469ff]
- text-white px-4 py-1 rounded-md '>Profile</Link></div> 
-        <div className=' flex justify-center items-center  bg-[#1b1c1e] '>
-  <Link to='/home'
- style={{transition:"width 1s"}} 
- className='buttonfontsize  font-inter link_tag font-medium bg-[#6469ff]
- text-white px-4 py-1 rounded-md '>Coumminty</Link></div> 
+ '>Profile</Link></div> 
+        
               <div className="navpair">
                 {/* <LogoSearch /> */}
-                <h3 onClick={removeLocalstorgae}>
+                <h3 className='buttonfontsize link_tag' onClick={removeLocalstorgae}>
                   LogOut <SlLogout />
                 </h3>
               </div>

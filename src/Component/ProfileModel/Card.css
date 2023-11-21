@@ -1,0 +1,131 @@
+.sec{
+    width: 95vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 11vh;
+    gap: 2vw;
+}
+
+.cardbg{
+    /* background-color: red; */
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    /* flex: 1; */
+
+    gap: 0.5vw;
+    justify-content: center;
+    align-items: center;
+}
+.card{
+    width: 32.5%;
+    height: fit-content;
+    background-color:var(--inputColor);
+    /* height: 33% !important; */
+    border-radius: 2vw;
+    overflow: hidden;
+    position: relative;
+}
+.card:hover{
+    cursor: pointer;
+}
+.card>img{
+    width: 100%;
+    height: 40vh;
+    overflow: hidden;
+    object-fit: cover;
+    /* position: relative; */
+    /* bottom: 0; */
+}
+.cardtwo{
+    /* width: %; */
+}
+/* .cardbg>:nth-child(odd){
+width: 60%;     
+/* } */
+
+.cardtwo>img{
+height: 50vh;
+}
+.float{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin:1vw;
+    padding: 0.6vw;
+    background-color: var(--cardColorTwo);
+    border-radius: 1vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.float>p{
+    font-weight: bold;
+    font-size: 1vw;
+}
+.float>span{
+    font-size: 1.5vw;
+
+}
+.floattwo>div>img{
+    width: 4vw;
+    height: 4vw;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.floattwo>div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5vw;
+    font-weight: bold;
+    font-size: 1vw;
+}
+.floattwo{
+    display: none;
+}
+
+.cardtwo:hover>.floattwo{
+    display: flex;
+}
+
+
+
+/* Assuming a responsive grid */
+
+/* Large screens and above (lg and larger) */
+@media (min-width: 1024px) {
+    .grid {
+    }
+  }
+  
+  /* Medium screens (sm) */
+  @media (min-width: 640px) {
+    .sm\\:grid-cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 columns */
+    }
+  }
+  
+  /* Small screens (xs) */
+  @media (max-width: 639px) {
+    .xs\\:grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 columns */
+    }
+  }
+  
+  /* Mobile screens and below (xs and smaller) */
+  /* For screens smaller than 640px (assuming mobile) */
+  .grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)); /* 1 column */
+  }
+  
+  /* Gap between grid items */
+  .gap-3 > * {
+    margin-bottom: 0.75rem; /* Adjust this value to set the gap */
+    margin-right: 0.75rem; /* Adjust this value to set the gap */
+  }
+  

@@ -5,10 +5,14 @@ import dcover from "../../Assets/dcover.png";
 import { MdOutlineTipsAndUpdates } from "react-icons/md";
 import "./Profile.css"
 import Post from '../Posts/Post';
-import Card from '../Posts/Card';
+import Card from '../ProfileModel/Card';
 import ProfileModal from '../ProfileModel/ProfileModal';
 import { useNavigate } from 'react-router-dom';
 import { MantineProvider } from '@mantine/core';
+import { MdFoodBank } from "react-icons/md";
+import CreateRecipe from '../ProfileModel/CreateRecipe';
+import { MdTipsAndUpdates } from "react-icons/md";
+import { IoAppsSharp } from "react-icons/io5";
 
 
 
@@ -18,9 +22,11 @@ function Profile() {
     const { loginUser } = useContext(UserContext);
 // console.log(loginUser)
     const [modalOpen, setModalOpen] = useState(false);
+    const [createRecipeModal,setCreateRecipeModal]=useState(false)
   return (
     <>
-    <div className="ProfileCard">
+  <div className='profile_overall'>
+  <div className="ProfileCard">
       <div className="ProfileImages">
         <img
           src={loginUser.coverImage === "" ? dcover : loginUser.coverImage}
@@ -39,12 +45,14 @@ function Profile() {
       <div className="FollowStatus">
         <hr />
         <div className='Follow'>
-            <span>{loginUser.bio}</span>
+            <span><span>Bio: </span>{loginUser.bio}</span>
         </div>
         <div className='Follow'>
-            <span>{loginUser.workingAs}</span>
+            <span><span>Working As: </span>{loginUser.workingAs}</span>
         </div>
-        {/* <div>
+        {/* <hr />
+
+        <div>
           <div className="Follow">
             <span>{loginUser.following.length}</span>
             <span>Followings</span>
@@ -60,32 +68,55 @@ function Profile() {
       <span
         className="edit"
         onClick={() => {
-          setModalOpen(true);console.log("check");
+          setModalOpen(true);
         // navigate(`/profile/update/${loginUser._id}`)
         }}
       >
-        Update <MdOutlineTipsAndUpdates />
+        Update <MdTipsAndUpdates  />
       </span>
 
 
       
 
-<div className='Posts'>
-        <h5>Recipe's</h5>
+
+
+    </div>
+
+    <div className='posts'>
+       <div>
+       {/* <h5 className='edita'>Your Posts</h5> */}
+       {/* <IoAppsSharp /> */}
+        <span
+        className="edit"
+        onClick={() => {
+          setCreateRecipeModal(true);
+        // navigate(`/profile/update/${loginUser._id}`)
+        }}
+      >
+        Create Recipe <MdFoodBank/> 
+      </span>
+       </div>
 <Card/>
 
     </div>
-    <MantineProvider>
+  </div>
 
-    <ProfileModal
+
+
+      {/* <MantineProvider> */}
+
+      <ProfileModal
           modalOpen={modalOpen}
           setModalOpen={setModalOpen}
-          loginUser={loginUser}
+          // loginUser={loginUser}
+          
         />
-        </MantineProvider>
-    </div>
-
-  
+        <CreateRecipe
+        modalOpen={createRecipeModal}
+        setModalOpen={setCreateRecipeModal}
+        loginUser={loginUser}/>
+        
+        {/* </MantineProvider> */}
   </>
   )
 }

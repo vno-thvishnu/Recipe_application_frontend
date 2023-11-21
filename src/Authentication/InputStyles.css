@@ -90,8 +90,58 @@
 .fordisplayid>p>span{
   font-weight: bolder;
 }
-
-
+.inplg{
+  width: 70vw;
+  /* overflow: auto !important; */
+}
+/* .inplg option{
+  overflow: scroll;
+} */
+/* .inplg::-webkit-scrollbar {
+  display:flex;
+} */
+.checkbox{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: black; */
+  
+}
+.checkbox>div{
+  width: 70vw;
+  /* background-color: aqua; */
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  /* gap: vw; */
+}
+.checkbox>div>input{
+  width: 4vw;
+}
+.inputtop{
+  width: 70vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.inputtop>div{
+  /* width: 15vw; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2vw;
+}
+.height{
+  height: 30vh;
+}
+.yesorno{
+  margin-top: 2vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4vw;
+}
 @media only screen and (max-width: 600px) {
   .inputbg {
     padding: 0.5rem;

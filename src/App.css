@@ -7,6 +7,9 @@
   --profileShadow: 0px 4px 17px 2px rgba(0, 0, 0, 0.25);
   --hrColor: #cfcdcd;
   --cardColor: rgba(255, 255, 255, 0.64);
+  --cardColorTwo: rgba(255, 255, 255, 0.85);
+
+  
 
   /* --buttonBg: #fd507e; */
   --buttonBg: #c70035;
@@ -59,9 +62,14 @@
   background: transparent;
   border: 2px solid var(--buttonBg);
 }
-::-webkit-scrollbar {
-  display: none;
-}
+/* ::-webkit-scrollbar { */
+  /* Hide the scrollbar for WebKit (Chrome, Safari, Edge) */
+  /* display: flex; */
+  /* Firefox */
+  /* scrollbar-width: none; */
+   /* Internet Explorer 11 */
+  /* -ms-overflow-style: none; */
+/* } */
 
 #error-box {
   border: 1px solid red !important;

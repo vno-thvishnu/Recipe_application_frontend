@@ -1,13 +1,24 @@
-.ProfileCard {
+.profile_overall{
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1vw;
+  margin-top: 11vh;
+}
+.ProfileCard,.posts {
     border-radius: 2vw;
     display: flex;
     /* height: fit-content; */
     align-items: center;
+    justify-content: center;
     flex-direction: column;
     gap: 0.5rem;
     padding-bottom: 0.5rem;
   
-    width: 97%;
+    width: 60%;
     background-color: var(--cardColor);
     /* background-color: #fd507e; */
   }
@@ -17,9 +28,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
   }
   .ProfileImages > img:nth-of-type(1) {
-    width: 200%;
+    width: 100%;
     height: 15vw;
     object-fit: cover;
     overflow: hidden;
@@ -28,35 +40,38 @@
   }
   .ProfileImages > img:nth-of-type(2) {
     background-color: white;
-    width: 10vw;
-    height: 10vw;
+    width: 12vw;
+    height: 12vw;
     border: 0.2vw solid white;
     object-fit: cover;
     border-radius: 50%;
     position: absolute;
-    bottom: -5vw;
+    bottom: -6vw;
     box-shadow: var(--profileShadow);
   }
   .ProfileName {
+    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 5vw;
+    margin-top: 6.5vw;
     font-size: 1.5vw;
   }
   .ProfileName > span:nth-of-type(1) {
     font-weight: bold;
   }
   .FollowStatus {
+    width: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 1vw;
-    font-size: 1.5vw;
+    font-size: 1.2vw;
+    /* font-style: italic; */
   }
   .FollowStatus > hr {
-    width: 85%;
+    width: 65%;
     border: 0.1vh solid var(--hrColor);
     background-color: var(--hrColor);
   }
@@ -75,7 +90,7 @@
     gap: 0.5vw;
   }
   .Follow > span:nth-of-type(1) {
-    font-weight: bold;
+    /* font-weight: bold; */
   }
   .Follow > span:nth-of-type(2) {
     color: var(--gray);
@@ -93,13 +108,38 @@
     align-self: center;
     cursor: pointer;
   }
+  .posts{
+    padding: 1vw;
+  }
+  .posts>:nth-child(1){
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   .edit {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
     font-size: 1.5vw;
+    color: #c70035;
+    font-weight: bold;
+    
   }
+  .edit:hover{
+    cursor: pointer;
+  }
+  .edita{
+    color: var(--gray);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5vw;
+    font-weight: bold;
+  }
+
   @media only screen and (max-width: 600px) {
     .ProfileCard {
       border-radius: 4vw;

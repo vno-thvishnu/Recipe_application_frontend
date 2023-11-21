@@ -8,6 +8,7 @@ import Signup from './Authentication/Signup';
 import Home from './Home/Home';
 import Post from './Component/Posts/Post';
 import Profile from './Component/Profile/Profile';
+import OtherProfile from './Component/Posts/OtherProfile';
 
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
           <Route path="/home" element={<Home/>} >
           <Route path="/home" element={<Post/>} />
           <Route path="/home/profile" element={<Profile/>} />
+          <Route path="/home/view/:userId" element={<OtherProfile/>} />
+
           </Route>
           {/* <Route path="/profile/update/:id" element={<ProfileModal/>} /> */}
 
