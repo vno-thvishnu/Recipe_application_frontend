@@ -27,7 +27,7 @@
     -webkit-animation: spin 1s ease-out infinite;
             animation: spin 1s ease-out infinite;
     transform-origin: var(--origin-x) var(--origin-y);
-    background-color: #fd507e;
+    background-color: var(--buttonBg);
   }
   .loader-el:nth-child(1)::before {
     --origin-y: -100%;
