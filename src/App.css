@@ -12,7 +12,8 @@
   
 
   /* --buttonBg: #fd507e; */
-  --buttonBg: #c70035;
+  /* --buttonBg: #c70035; */
+ --buttonBg:#e80033;
   --inputColor: rgba(40, 52, 62, 0.07);
   --photo: #4cb256;
   --video: #4a4eb7;
@@ -25,6 +26,7 @@
   color: var(--black);
 
   background-color: #f3f3f3;
+min-height: 100vh;
 }
 .blur {
   position: absolute;
