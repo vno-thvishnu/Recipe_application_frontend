@@ -47,7 +47,9 @@ const WelcomePage = () => {
       </div>
         <div className="Webname">
           <h1>Hello Chef's</h1>
-          <h6>You will become a chef</h6>
+          {/* <h6>You will become a chef</h6> */}
+          <h6>Read. Cook. Eat.</h6>
+
         </div>
       </div>
      

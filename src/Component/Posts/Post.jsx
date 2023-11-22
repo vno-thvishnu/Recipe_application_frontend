@@ -13,7 +13,7 @@ const [loading,setLoading]=useState(false)
 // const [allPost,setAllPost]=useState(null)
 
 const[searchText,setSearchText]=useState("")
-const[searchedResults,setSearchedResults]=useState(null)
+const[searchedResults,setSearchedResults]=useState([])
 const[searchTimeout,setSearchTimeout]=useState(null)
 useEffect(()=>{
     const getallpost =async()=>{
@@ -28,52 +28,70 @@ useEffect(()=>{
     getallpost()
 },[]);
 
-// const handleSearchChange=(e)=>{
-//     clearTimeout(searchTimeout)
-//     setSearchText(e.target.value);
-// setSearchTimeout(
-    
-//     setTimeout(()=>{
-//         const searchResults=allPost.filter((item)=>item.name.toLowerCase()
-//         .includes(searchText.toLowerCase()) || item.prompt.toLowerCase().includes
-//         (searchText.toLowerCase()))
+const handleSearchChange=(e)=>{
+    // console.log(e.target.value)
 
-//         setSearchedResults(searchResults)
-//     },500)
-// )
-// }
-console.log(allPosts)
+    clearTimeout(searchTimeout)
+    setSearchText(e.target.value);
+setSearchTimeout(
+    
+    setTimeout(()=>{
+        const searchResults=allPosts.filter((item)=>item.title.toLowerCase()
+        .includes(searchText.toLowerCase()) || item.userName.toLowerCase().includes
+        (searchText.toLowerCase()))
+        setSearchedResults(searchResults)
+    },500)
+)
+}
+// console.log(allPosts)
   return (
 <>
 <>
 
 
 <section className='sec' >
-    <div>
+    {/* <div>
         <h1>
             The Community Showcase
         </h1>
        
     </div>
-  
-    {/* <div className="Inputpair">
+   */}
+    <div className="Inputpair">
             <input
               className="Input inplg"
               type="text"
               name="text"
-              placeholder="Search posts"
-              value={searchText}
-              handleChange={handleSearchChange}
+              placeholder="Search recipe's or people"
+            //   value={searchText}
+              onChange={handleSearchChange}
             />
           
-          </div> */}
+          </div>
     <div  className="cardbg comcard  ">
-{
+{/* {
     allPosts.map((get)=>{
        return <CommunityCard get={get}/>
-        // console.log(get)
     })
-}
+} */}
+
+{searchText?(
+     <>
+      {
+            searchedResults.map((get)=>{
+                return <CommunityCard get={get}/>
+             })
+           }
+     </>
+    ):(
+      <>
+       {
+        allPosts.map((get)=>{
+            return <CommunityCard get={get}/>
+         })
+       }
+      </>
+    )}
     </div>
 </section>
 </>

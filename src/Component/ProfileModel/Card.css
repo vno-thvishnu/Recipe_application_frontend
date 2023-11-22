@@ -1,5 +1,5 @@
 .sec{
-    width: 95vw;
+    width: 80vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,6 +19,9 @@
     gap: 0.5vw;
     justify-content: center;
     align-items: center;
+}
+.comcard{
+gap: 1vw;
 }
 .card{
     width: 32.5%;
@@ -92,9 +95,39 @@ height: 50vh;
 .cardtwo:hover>.floattwo{
     display: flex;
 }
-
-
-
+@media only screen and (max-width: 600px) {
+.sec{
+    margin-top: 20vh;
+}
+.floattwo{
+    display: flex;
+}
+.floattwo>div>img{
+width: 7vw;
+height: 7vw;
+}
+.floattwo>div{
+    font-size: 1.3vw;
+}
+.float>p{
+    font-size: 1.3vw;
+}
+.cardtwo{
+    width: 46.2%;
+    /* background-color: black; */
+}
+.card>img{
+    height: 22vh;
+}
+.cardtwo>img{
+    /* margin-top: 0; */
+    height: 25vh;
+    }
+.float{
+    margin: 1vw;
+    margin-bottom: 0;
+}
+}
 /* Assuming a responsive grid */
 
 /* Large screens and above (lg and larger) */

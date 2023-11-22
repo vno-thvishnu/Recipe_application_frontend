@@ -8,7 +8,7 @@ function CommunityCard({ get }) {
     const [previewModal, setPreviewModal] = useState(false);
 const [id, setId] = useState("");
 
-console.log(get)
+// console.log(get)
   return (
     <>
       {/* <div className="cardbg"> */}

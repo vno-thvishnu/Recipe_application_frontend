@@ -22,14 +22,16 @@ function Navbar() {
                 {/* <img src={Logo} /> */}
                 <div className="Webname">
                   <h1 style={{ "background-color":"white"}}>Hello Chef's</h1>
-                  <h6>You will become a Chef</h6>
+                  {/* <h6>You will become a Chef</h6> */}
+                  <h6>Read. Cook. Eat.</h6>
+
                 </div>
               </div>
-              <div >
+              <div className="navpair" >
   <Link to='/home'
  style={{transition:"width 1s"}} 
  className='buttonfontsize link_tag'>Community</Link></div>
-              <div>
+              <div className="navpair">
   <Link to='/home/profile'
  style={{transition:"width 1s"}} 
  className='buttonfontsize  link_tag

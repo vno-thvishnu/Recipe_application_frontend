@@ -6,7 +6,7 @@
   padding-left: 0;
   padding-right: 0;
 
-  /* height: 100vh !important; */
+  min-height: 100vh ;
 }
 .Navbar {
   display: flex;
@@ -24,17 +24,18 @@
   padding-left: 4vw;
   padding-right: 4vw;
 }
-.navpair > h3 {
+.navpair > :first-child {
   color: #f5f5f5;
   cursor: pointer !important;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+  font-weight: bold;
   z-index: 4;
 }
-.navpair > h3:hover {
-  color: #469cfe;
+.navpair > :first-child {
+  color: #ffffff;
 }
 
 .Home {
@@ -70,6 +71,9 @@
 .logohide {
   display: flex;
 }
+.Webname{
+  /* text-align: center; */
+}
 .Webname>h1{
   background-color: var(--buttonBg) ;
   font-size: 1.8rem;
@@ -103,6 +107,7 @@ color: var(--buttonBg);
     gap: 1rem;
     z-index: 4;
     position: relative;
+    margin-bottom: 2.5vw;
   }
   .logohide > img {
     width: 25vw;
@@ -116,20 +121,29 @@ color: var(--buttonBg);
   }
   .HomeParent {
     height: fit-content !important;
-    padding: 1rem;
+    /* padding: 1rem; */
     gap: 1rem;
   }
   .Navbar {
-    justify-content: space-between;
-    flex-direction: column;
+    justify-content: space-evenly;
+    flex-direction: row;
     height: fit-content;
-    gap: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1.5vw;
+    padding-left: 0;
+    padding-right: 0;
+    overflow: hidden;
+    width: fit-content;
+    width: 100vw;
+  }
+  .Navbar>:first-child{
+    width: 100%;
   }
   .navpair {
     position: sticky !important;
     top: 0 !important;
   }
-  .navpair > h3 {
+  .navpair > :first-child {
     font-size: 2.5vw;
     gap: 1.5vw;
   }
