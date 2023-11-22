@@ -131,7 +131,7 @@ height: 7vw;
     }
 .float{
     margin: 1vw;
-    margin-bottom: 0;
+    /* margin-bottom: 0; */
 }
 }
 /* Assuming a responsive grid */
