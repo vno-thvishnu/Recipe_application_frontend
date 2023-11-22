@@ -142,10 +142,10 @@
 
   @media only screen and (max-width: 600px) {
     .profile_overall{
-      margin-top: 22vh;
+      margin-top: 12vh;
     }
     .ProfileCard {
-      width: 80%;
+      width: 90%;
       border-radius: 4vw;
     }
     .ProfileImages > img:nth-of-type(1) {
@@ -174,7 +174,7 @@
       gap: 0.2rem;
     }
     .posts{
-      width: 80%;
+      width: 90%;
     }
     
   }
