@@ -56,7 +56,7 @@
     width: 30vw;
   }
   .a-left {
-    margin-top: 15vw;
+    margin-top: 25vw;
     gap: 6vw;
     flex-direction: column-reverse;
 
@@ -68,7 +68,7 @@
     font-size: 2.5vw;
   }
 .Auth>div>img{
-width: 95vw;
+width: 100vw;
 /* position: static; */
 /* margin-right: -20vw; */
 }
